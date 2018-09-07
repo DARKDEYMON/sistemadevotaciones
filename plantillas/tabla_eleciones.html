@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+
+	{% block body %}
+		<h1 class="text-center"> Elecciones</h1>
+	    <table class="table">
+		  <thead>
+		    <tr>
+		    	<tr> 
+			  		<td colspan="4">
+			  			<span class="table-remove"><a href="{% url 'votacion:eleccioncreate' %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Crear eleccion</button></a></span>
+			  		</td>
+		  		</tr>
+			    <th scope="col">#id</th>
+			    <th scope="col">Nombre de la Eleccion</th>
+			    <th scope="col">Descripcion</th>
+			    <th scope="col">opciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for a in object_list %}
+		  		
+		  	
+		    <tr>
+		      <th scope="row">{{ a.id }}</th>
+		      <td>{{ a.nombre_eleccion }}</td>
+		      <td>{{ a.descripcion }}</td>
+		      <td>
+		      		<span class="table-remove"><a href="{% url 'votacion:listamesas' a.id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Estado de Eleccion</button></a></span>
+		      </td>
+		    </tr>
+
+
+		    {% endfor %}
+		    <div class="col-xs-6 col-centered">
+					{% if is_paginated %}
+						<div class="text-center">
+						<ul class="pagination">
+						{% if page_obj.has_previous %}
+								    <li>
+								        <span><a href="?page={{ page_obj.previous_page_number }}">Anterior</a></span>
+								    </li>
+						{% endif %}
+								    <li class="">
+								        <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+								    </li>
+						{% if page_obj.has_next %}
+								    <li>
+								        <span><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></span>
+								    </li>
+						{% endif %}
+						</ul>
+						</div>
+					{% else %}
+						<!--
+						<h3>Your File Exam</h3>
+						<p>File not yet available</p>
+						-->
+					{% endif %}
+				</div>
+		  </tbody>
+		</table>
+	{% endblock body %}

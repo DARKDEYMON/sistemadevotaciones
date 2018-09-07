@@ -1,0 +1,159 @@
+{% extends "index.html" %}
+
+	{% block body %}
+		<h1 class="text-center">Mesas</h1>
+	    <table class="table">
+	    	<thead>
+		    <tr>
+		      <th scope="col">#id</th>
+		      <th scope="col">mesa</th>
+		      <th scope="col">Blancos</th>
+		      <th scope="col">Blancos %</th>
+		      <th scope="col">Nulos</th>
+		      <th scope="col">Nulos %</th>
+		      <th scope="col">Partidos</th>
+		      <th scope="col">Total Votos</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for a in object_list %}
+		  		
+		  	
+		    <tr>
+		      <th scope="row">{{ a.id }}</th>
+		      <td>{{ a.mesa }}</td>
+		      <td>{{ a.blancos }}</td>
+		      <td>
+		      	<div class="progress">
+				  	<div class="progress-bar" role="progressbar" style="width: {{ a.porcentaje_blancos|floatformat:0 }}%;" aria-valuenow="{{ a.porcentaje_blancos|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+				  	{{ a.porcentaje_blancos|floatformat:0 }}%
+					</div>
+				</div>
+		      </td>
+		      <td>{{ a.nulos }}</td>
+		      <td>
+		      	<div class="progress">
+				  	<div class="progress-bar" role="progressbar" style="width: {{ a.porcentaje_nulos|floatformat:0 }}%;" aria-valuenow="{{ a.porcentaje_nulos|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+				  	{{ a.porcentaje_nulos|floatformat:0 }}%
+					</div>
+				</div>
+		      </td>
+		      <td>
+		      	
+		      		<table class="table">
+		      			<thead>
+					    <tr>
+					      <th scope="col">Partido</th>
+					      <th scope="col">Votos</th>
+					      <th scope="col">Porcentaje</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for b in a.votos_set.all %}
+					  	<tr>
+					  		<td>
+					  			{{ b.partidos }} 
+					  		</td>
+					  		<td>
+					  			{{ b.votos }}
+					  		</td>
+					  		<td>
+					  			
+						      	<div class="progress">
+								  	<div class="progress-bar" role="progressbar" style="width: {{ b.pocentaje|floatformat:0 }}%;" aria-valuenow="{{ b.pocentaje|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+								  	{{ b.pocentaje|floatformat:0 }}%
+									</div>
+								</div>
+						      
+					  		</td>
+					  	</tr>
+					  	{% endfor %}
+					  </tbody>
+			      	</table>
+			    
+			  </td>
+			  <td>
+			  	{{ a.total }}
+			  </td>
+		      
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+
+		<h1 class="text-center">Resultado Gloval</h1>
+	    <table class="table">
+	    	<thead>
+		    <tr>
+		      <th scope="col">Blancos</th>
+		      <th scope="col">Blancos %</th>
+		      <th scope="col">Nulos</th>
+		      <th scope="col">Nulos %</th>
+		      <th scope="col">Partidos</th>
+		      <th scope="col">Total Votos</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  		
+		  	
+		    <tr>
+		      <td>{{ object_list.0.eleccion.total_blancos }}</td>
+		      <td>
+		      	<div class="progress">
+				  	<div class="progress-bar" role="progressbar" style="width: {{ object_list.0.eleccion.pocen_blancos|floatformat:0 }}%;" aria-valuenow="{{ object_list.0.eleccion.pocen_blancos|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+				  	{{ object_list.0.eleccion.pocen_blancos|floatformat:0 }}%
+					</div>
+				</div>
+		      </td>
+		      <td>{{ object_list.0.eleccion.total_nulos }}</td>
+		      <td>
+		      	<div class="progress">
+				  	<div class="progress-bar" role="progressbar" style="width: {{ object_list.0.eleccion.pocen_nulos|floatformat:0 }}%;" aria-valuenow="{{ object_list.0.eleccion.pocen_nulos|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+				  	{{ object_list.0.eleccion.pocen_nulos|floatformat:0 }}%
+					</div>
+				</div>
+		      </td>
+		      <td>
+		      	
+		      		<table class="table">
+		      			<thead>
+					    <tr>
+					      <th scope="col">Partido</th>
+					      <th scope="col">Votos</th>
+					      <th scope="col">Porcentaje</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for b in object_list.0.eleccion.partidos_set.all %}
+					  	<tr>
+					  		<td>
+					  			{{ b.nombre_partido }} 
+					  		</td>
+					  		<td>
+					  			{{ b.total_votos }}
+					  		</td>
+					  		<td>
+					  			
+						      	<div class="progress">
+								  	<div class="progress-bar" role="progressbar" style="width: {{ b.total_pocen|floatformat:0 }}%;" aria-valuenow="{{ b.total_pocen|floatformat:0 }}" aria-valuemin="0" aria-valuemax="100">
+								  	{{ b.total_pocen|floatformat:0 }}%
+									</div>
+								</div>
+						      
+					  		</td>
+					  	</tr>
+					  	{% endfor %}
+					  </tbody>
+			      	</table>
+			    
+			  </td>
+			  <td>
+			  	{{ object_list.0.eleccion.total }}
+			  </td>
+		      
+		    </tr>
+
+		  </tbody>
+		</table>
+
+	{% endblock body %}

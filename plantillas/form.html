@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+	
+	{% block body %}
+	    	{% load bootstrap4 %}
+
+			{# Display a form #}
+			
+			<form  method="post" class="form">
+			    {% csrf_token %}
+			    {% bootstrap_form form %}
+			    {% buttons %}
+			        <button type="submit" class="btn btn-primary">Submit</button>
+			    {% endbuttons %}
+			</form>
+	{% endblock body %}

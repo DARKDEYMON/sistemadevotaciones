@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+	{% block body %}
+		<h1 class="text-center">Mesas</h1>
+	    <table class="table">
+		  <thead>
+		  	<tr>
+		  		<td colspan="4">
+		  			<span class="table-remove"><a href="{% url 'votacion:inservota' id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Añadir Mesa</button></a></span>
+		  			<span class="table-remove"><a href="{% url 'votacion:partidoscreate' id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Añadir Partidos</button></a></span>
+		  			<span class="table-remove"><a href="{% url 'votacion:listaestado' id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Estado</button></a></span>
+		  		</td>
+		  	</tr>
+		    <tr>
+		      <th scope="col">#id</th>
+		      <th scope="col">Numero</th>
+		      <th scope="col">Lugar</th>
+		      <th scope="col">opciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for a in object_list %}
+		  		
+		  	
+		    <tr>
+		      <th scope="row">{{ a.id }}</th>
+		      <td>{{ a.mesa }}</td>
+		      <td>Otto</td>
+		      <td>
+		      		<span class="table-remove"><a href="{% url 'votacion:updavota' a.id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Actualizar</button></a></span>
+		      </td>
+		    </tr>
+
+
+		    {% endfor %}
+		  </tbody>
+		</table>
+	{% endblock body %}
