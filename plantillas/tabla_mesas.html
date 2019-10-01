@@ -35,4 +35,27 @@
 		    {% endfor %}
 		  </tbody>
 		</table>
+		{% if is_paginated %}
+				<div class="text-center">
+				<ul class="pagination">
+				{% if page_obj.has_previous %}
+				    <li>
+				        <span><a href="?page={{ page_obj.previous_page_number }}{% if searchdata %}&search={{searchdata}}{% endif %}">Anterior</a></span>
+				    </li>
+				{% endif %}
+				    <li class="">
+				        <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+				    </li>
+				{% if page_obj.has_next %}
+				    <li>
+				        <span><a href="?page={{ page_obj.next_page_number }}{% if searchdata %}&search={{searchdata}}{% endif %}">Siguiente</a></span>
+				    </li>
+				{% endif %}
+				</ul>
+				</div>
+			{% else %}
+				<div class="text-center">
+					<p>Sin Paginacion</p>
+				</div>
+			{% endif %}
 	{% endblock body %}

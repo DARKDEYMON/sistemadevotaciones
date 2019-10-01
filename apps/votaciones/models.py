@@ -40,7 +40,7 @@ class eleccion(models.Model):
 		return self.nombre_eleccion
 
 class partidos(models.Model):
-	eleccion = models.ForeignKey(eleccion)
+	eleccion = models.ForeignKey(eleccion, on_delete=models.CASCADE)
 	nombre_partido = models.CharField(
 		max_length=60,
 		blank=False,
@@ -54,7 +54,7 @@ class partidos(models.Model):
 		return self.nombre_partido
 
 class mesa(models.Model):
-	eleccion = models.ForeignKey(eleccion)
+	eleccion = models.ForeignKey(eleccion, on_delete=models.CASCADE)
 	mesa = models.IntegerField(
 		null=False,
 		blank=False
@@ -80,8 +80,8 @@ class mesa(models.Model):
 		unique_together = (('eleccion', 'mesa'),)
 
 class votos(models.Model):
-	mesa = models.ForeignKey(mesa)
-	partidos = models.ForeignKey(partidos)
+	mesa = models.ForeignKey(mesa, on_delete=models.CASCADE)
+	partidos = models.ForeignKey(partidos, on_delete=models.CASCADE)
 	votos = models.IntegerField(
 		null=False,
 		blank=False

@@ -7,12 +7,12 @@
 		    <tr>
 		    	<tr> 
 			  		<td colspan="4">
-			  			<span class="table-remove"><a href="{% url 'votacion:eleccioncreate' %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Crear eleccion</button></a></span>
+			  			<span class="table-remove"><a href="{% url 'votacion:eleccioncreate' %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Crear elección</button></a></span>
 			  		</td>
 		  		</tr>
 			    <th scope="col">#id</th>
-			    <th scope="col">Nombre de la Eleccion</th>
-			    <th scope="col">Descripcion</th>
+			    <th scope="col">Nombre de la Elección</th>
+			    <th scope="col">Descripción</th>
 			    <th scope="col">opciones</th>
 		    </tr>
 		  </thead>
@@ -25,7 +25,7 @@
 		      <td>{{ a.nombre_eleccion }}</td>
 		      <td>{{ a.descripcion }}</td>
 		      <td>
-		      		<span class="table-remove"><a href="{% url 'votacion:listamesas' a.id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Estado de Eleccion</button></a></span>
+		      		<span class="table-remove"><a href="{% url 'votacion:listamesas' a.id %}"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Estado de Elección</button></a></span>
 		      </td>
 		    </tr>
 
